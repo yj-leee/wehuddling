@@ -6,8 +6,8 @@ class User(AbstractUser):
     username = None
     GENDER_CHOICES = (('M', '남성'),('F', '여성'))
     email          = models.EmailField(max_length=100, unique=True)
-    gender         = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
-    address        = models.CharField(max_length=100, null=True)
+    gender         = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    address        = models.CharField(max_length=100)
     name           = models.CharField(max_length=30)
     phone_number   = models.CharField(max_length=20)
     update_at      = models.DateTimeField(auto_now=True)
