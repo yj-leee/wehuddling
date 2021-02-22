@@ -29,16 +29,16 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=100)
-    password = serializers.CharField(max_length=128)
-    token = serializers.CharField(max_length=255, read_only=True)
+    password = serializers.CharField(max_length=128, write_only=True)
 
+    token = serializers.CharField(max_length=255, read_only=True)
     def validate(self, data):
         username = data.get('email')
         password = data.get('password')
-
+        user = authenticate(email=email, password=password)
+        print(data)
         if user is None:
             return {'email':'None'}
-
         try:
             payload = JWT_PAYLOAD_HANDLER(user)
             jwt_token = JWT_ENCODE_HANDLER(payload)
