@@ -32,7 +32,7 @@ class UserCreate(APIView):
 class UserLogin(generics.GenericAPIView):
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        serializer.validte(raise_exception=True)
         response = {
             "success" : "True",
             "status_code" : status.HTTP_200_OK,
