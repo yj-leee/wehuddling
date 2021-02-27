@@ -34,14 +34,14 @@ class UserLogin(generics.GenericAPIView):
     @swagger_auto_schema(request_body=UserLoginSerializer)
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
-
         if serializer.is_valid():
-            serializer.validte(raise_exception=True)
+            serializer.is_valid(raise_exception=True)
+            user = serializer.validated_data
             response = {
                 "success" : "True",
                 "status_code" : status.HTTP_200_OK,
                 "message" : "Login Success",
-                "token" : serializer.data['token']
+                "token" : user['token']
             }
             stauts_code = status.HTTP_200_OK
 

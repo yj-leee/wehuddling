@@ -33,10 +33,9 @@ class UserLoginSerializer(serializers.Serializer):
 
     token = serializers.CharField(max_length=255, read_only=True)
     def validate(self, data):
-        username = data.get('email')
+        email = data.get('email')
         password = data.get('password')
         user = authenticate(email=email, password=password)
-        print(data)
         if user is None:
             return {'email':'None'}
         try:
